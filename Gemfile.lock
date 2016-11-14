@@ -16,6 +16,13 @@ GIT
       nap (~> 1.0)
 
 GIT
+  remote: https://github.com/CocoaPods/Fourflusher.git
+  revision: 286949079bad4d760f8646601c91bc5f99137fe8
+  branch: master
+  specs:
+    fourflusher (2.0.1)
+
+GIT
   remote: https://github.com/CocoaPods/Molinillo.git
   revision: cf6b05b045abd584e48a4480e742092335e29e87
   branch: master
@@ -172,7 +179,6 @@ GEM
     faraday-http-cache (1.3.0)
       faraday (~> 0.8)
     ffi (1.9.6)
-    fourflusher (2.0.1)
     fuzzy_match (2.0.4)
     gh_inspector (1.0.2)
     git (1.3.0)
@@ -274,6 +280,7 @@ DEPENDENCIES
   cocoapods_debug
   danger
   diffy
+  fourflusher!
   inch_by_inch
   json!
   kicker
