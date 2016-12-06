@@ -6,6 +6,7 @@ machine:
 
 dependencies:
   override:
+    - sudo gem update --system
     - bundle install
     - |
       master_sha="$(ruby -e "puts '`git submodule status spec/fixtures/spec-repos/master`'.strip.sub(/^-/, '').split(/\s/, 2).first")"
