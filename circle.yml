@@ -5,7 +5,8 @@ machine:
     version: 7.3
 
 dependencies:
-  pre:
+  override:
+    - bundle install
     - |
       master_sha="$(ruby -e "puts '`git submodule status spec/fixtures/spec-repos/master`'.strip.sub(/^-/, '').split(/\s/, 2).first")"
       curl -ssL "https://github.com/CocoaPods/Specs/archive/$master_sha.tar.gz" | tar xz -C spec/fixtures/spec-repos
