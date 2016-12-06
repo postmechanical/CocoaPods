@@ -1,0 +1,20 @@
+machine:
+  ruby:
+    version: system
+  xcode:
+    version: 7.3
+
+dependencies:
+  pre:
+    - sudo gem install "bundler:~> 1.13"
+    - sudo gem update --system
+
+test:
+  pre:
+    - git config --global user.email "tests@cocoapods.org"
+    - git config --global user.name "CocoaPods Tests"
+    - bundle exec pod env
+  override:
+    - bundle exec rake spec:all:
+      environment:
+        COCOAPODS_CI_TASKS: EXAMPLES
