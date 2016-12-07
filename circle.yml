@@ -33,3 +33,4 @@ test:
         timeout: 1200
         environment:
           COCOAPODS_CI_TASKS: EXAMPLES
+          VERBOSE: true
