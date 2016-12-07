@@ -8,22 +8,9 @@ dependencies:
   override:
     - sudo gem update --system
     - bundle check || bundle install --path .bundle
-    - |
-      master_sha="$(ruby -e "puts '`git submodule status spec/fixtures/spec-repos/master`'.strip.sub(/^-/, '').split(/\s/, 2).first")"
-      curl -ssL "https://github.com/CocoaPods/Specs/archive/$master_sha.tar.gz" | tar xz -C spec/fixtures/spec-repos
-      git rm spec/fixtures/spec-repos/master
-      mv "spec/fixtures/spec-repos/Specs-$master_sha" spec/fixtures/spec-repos/master
-      (
-      cd spec/fixtures/spec-repos/master
-      git init
-      git remote add origin https://github.com/CocoaPods/Specs.git
-      )
-      git submodule update --init
-      mkdir -p ~/.cocoapods/repos/
-      ln -s spec/fixtures/spec-repos/master ~/.cocoapods/repos/master 
+    - .circle-scripts/fetch-cocoapods-repo-from-s3.sh
   cache_directories:
     - .bundle
-
 
 test:
   pre:
