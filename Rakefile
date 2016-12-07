@@ -298,7 +298,7 @@ begin
               execute_command "xcodebuild -workspace '#{workspace_path}' -scheme '#{scheme_name}' clean build"
             when :ios
               test_flag = (scheme_name.start_with? 'Test') ? 'test' : ''
-              destination = Fourflusher::SimControl.new.destination(:oldest, platform, "10.0").join(' ')
+              destination = Fourflusher::SimControl.new.destination(:oldest, platform, "10.1").join(' ')
               execute_command "xcodebuild -workspace '#{workspace_path}' -scheme '#{scheme_name}' clean build #{test_flag} ONLY_ACTIVE_ARCH=NO #{destination}"
             else
               raise "Unknown platform #{platform}"
