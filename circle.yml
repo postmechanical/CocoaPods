@@ -2,7 +2,7 @@ machine:
   ruby:
     version: system
   xcode:
-    version: 7.3
+    version: 8.1
 
 dependencies:
   override:
@@ -19,7 +19,5 @@ test:
     - bundle exec pod env
   override:
     - bundle exec rake spec:all:
-        timeout: 1200
         environment:
           COCOAPODS_CI_TASKS: EXAMPLES
-          VERBOSE: true
