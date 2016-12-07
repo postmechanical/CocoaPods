@@ -268,6 +268,8 @@ begin
     desc 'Build all examples'
     task :build do
       Bundler.require 'xcodeproj', :development
+      puts "Available simulators:"
+      puts Fourflusher::SimControl.new.list([])
       Dir['examples/*'].each do |dir|
         Dir.chdir(dir) do
           puts "Example: #{dir}"
@@ -295,10 +297,8 @@ begin
             when :osx
               execute_command "xcodebuild -workspace '#{workspace_path}' -scheme '#{scheme_name}' clean build"
             when :ios
-              # Specifically build against the simulator SDK so we don't have to deal with code signing.
-              # Need to use the iPhone 6s, since this is the default simulator paired with a watch in Xcode 7.3
               test_flag = (scheme_name.start_with? 'Test') ? 'test' : ''
-              destination = Fourflusher::SimControl.new.destination(:oldest, platform, target.deployment_target).join(' ')
+              destination = Fourflusher::SimControl.new.destination(:oldest, platform, "10.0").join(' ')
               execute_command "xcodebuild -workspace '#{workspace_path}' -scheme '#{scheme_name}' clean build #{test_flag} ONLY_ACTIVE_ARCH=NO #{destination}"
             else
               raise "Unknown platform #{platform}"
