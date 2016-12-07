@@ -28,5 +28,6 @@ test:
     - bundle exec pod env
   override:
     - bundle exec rake spec:all:
+        timeout: 1200
         environment:
           COCOAPODS_CI_TASKS: EXAMPLES
