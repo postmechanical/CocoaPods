@@ -19,6 +19,8 @@ dependencies:
       git remote add origin https://github.com/CocoaPods/Specs.git
       )
       git submodule update --init
+      mkdir -p ~/.cocoapods/repos/
+      ln spec/fixtures/spec-repos/master ~/.cocoapods/repos/master 
 
 
 test:
