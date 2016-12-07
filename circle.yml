@@ -7,7 +7,7 @@ machine:
 dependencies:
   override:
     - sudo gem update --system
-    - bundle install
+    - bundle check || bundle install --path .bundle
     - |
       master_sha="$(ruby -e "puts '`git submodule status spec/fixtures/spec-repos/master`'.strip.sub(/^-/, '').split(/\s/, 2).first")"
       curl -ssL "https://github.com/CocoaPods/Specs/archive/$master_sha.tar.gz" | tar xz -C spec/fixtures/spec-repos
@@ -20,7 +20,9 @@ dependencies:
       )
       git submodule update --init
       mkdir -p ~/.cocoapods/repos/
-      ln spec/fixtures/spec-repos/master ~/.cocoapods/repos/master 
+      ln -s spec/fixtures/spec-repos/master ~/.cocoapods/repos/master 
+  cache_directories:
+    - .bundle
 
 
 test:
